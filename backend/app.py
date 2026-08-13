@@ -11,7 +11,7 @@ load_dotenv(override=False)
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-CORS(app, supports_credentials=True, origins=["https://your-vercel-url.vercel.app"])
+CORS(app, supports_credentials=True, origins=["https://spotify-dashboard-six-gilt.vercel.app"])
 app.config.update(
     SESSION_COOKIE_SAMESITE="Lax",
     SESSION_COOKIE_SECURE=False,
@@ -41,8 +41,7 @@ def callback():
     code = request.args.get("code")
     token_info = sp_oauth.get_access_token(code)
     token = token_info["access_token"]
-    return redirect("https://your-vercel-url.vercel.app?token={token}")
-
+    return redirect(f"https://spotify-dashboard-six-gilt.vercel.app?token={token}")
 def get_sp():
     auth_header = request.headers.get("Authorization")
     if auth_header and auth_header.startswith("Bearer "):
