@@ -309,10 +309,10 @@ export default function App() {
       : { withCredentials: true };
 
     setLoading(true);
-    axios.get("http://localhost:5001/api/top-artists", config)
+    axios.get("https://spotify-dashboard-tz77.onrender.com/api/top-artists", config)
       .then(r => { setArtists(r.data); setLoggedIn(true); })
       .catch(() => setLoggedIn(false));
-    axios.get("http://localhost:5001/api/soul-profile", config)
+    axios.get("https://spotify-dashboard-tz77.onrender.com/api/soul-profile", config)
       .then(r => { setProfile(r.data); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
@@ -333,7 +333,7 @@ export default function App() {
             Discover what your music says about you
           </p>
           <button
-            onClick={() => window.location.href = "http://127.0.0.1:5001/login"}
+            onClick={() => window.location.href = "https://spotify-dashboard-tz77.onrender.com/login"}
             style={{ padding: "14px 36px", background: "#1DB954", color: "white", border: "none", borderRadius: "30px", fontSize: "14px", cursor: "pointer", letterSpacing: "1px", fontFamily: "Georgia, serif" }}>
             Login with Spotify
           </button>

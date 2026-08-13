@@ -11,7 +11,7 @@ load_dotenv(override=False)
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-CORS(app, supports_credentials=True, origins=["http://localhost:3000"])
+CORS(app, supports_credentials=True, origins=["https://your-vercel-url.vercel.app"])
 app.config.update(
     SESSION_COOKIE_SAMESITE="Lax",
     SESSION_COOKIE_SECURE=False,
@@ -25,7 +25,7 @@ SCOPE = "user-top-read user-read-recently-played"
 sp_oauth = SpotifyOAuth(
     client_id=os.getenv("SPOTIFY_CLIENT_ID"),
     client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
-    redirect_uri="http://127.0.0.1:5001/callback",
+    redirect_uri="https://spotify-dashboard-tz77.onrender.com/callback",
     scope=SCOPE,
 )
 
@@ -41,8 +41,7 @@ def callback():
     code = request.args.get("code")
     token_info = sp_oauth.get_access_token(code)
     token = token_info["access_token"]
-    return redirect(f"http://localhost:3000?token={token}")
-
+    return redirect("https://your-vercel-url.vercel.app?token={token}")
 
 def get_sp():
     auth_header = request.headers.get("Authorization")
