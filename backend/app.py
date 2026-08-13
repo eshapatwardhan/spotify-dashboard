@@ -7,8 +7,7 @@ import os
 from dotenv import load_dotenv
 import requests as http_requests
 
-load_dotenv()
-app = Flask(__name__)
+load_dotenv(override=False)app = Flask(__name__)
 app.secret_key = os.urandom(24)
 CORS(app, supports_credentials=True, origins=["http://localhost:3000"])
 app.config.update(
