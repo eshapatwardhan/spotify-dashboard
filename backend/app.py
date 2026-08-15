@@ -49,6 +49,13 @@ def get_sp():
         return spotipy.Spotify(auth=token)
     return spotipy.Spotify(auth=session.get("token"))
 
+@app.route("/debug")
+def debug():
+    return jsonify({
+        "client_id": os.getenv("SPOTIFY_CLIENT_ID", "NOT FOUND"),
+        "has_secret": bool(os.getenv("SPOTIFY_CLIENT_SECRET")),
+        "has_lastfm": bool(os.getenv("LASTFM_API_KEY")),
+    })
 
 @app.route("/api/top-artists")
 def top_artists():
