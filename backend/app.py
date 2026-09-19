@@ -42,7 +42,7 @@ def login():
 @app.route("/callback")
 def callback():
     code = request.args.get("code")
-    token_info = sp_oauth.get_access_token(code)
+    token_info = sp_oauth.get_access_token(code, check_cache=False)
     token = token_info["access_token"]
     return redirect(f"https://spotify-dashboard-six-gilt.vercel.app?token={token}")
 def get_sp():
