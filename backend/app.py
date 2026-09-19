@@ -22,11 +22,14 @@ app.config.update(
 
 SCOPE = "user-top-read user-read-recently-played"
 
+from spotipy.cache_handler import MemoryCacheHandler
+
 sp_oauth = SpotifyOAuth(
     client_id=os.getenv("SPOTIFY_CLIENT_ID"),
     client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
     redirect_uri="https://spotify-dashboard-tz77.onrender.com/callback",
     scope=SCOPE,
+    cache_handler=MemoryCacheHandler(),
 )
 
 
